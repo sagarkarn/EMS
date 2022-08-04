@@ -5,7 +5,7 @@ import useToken from "../hooks/useToken";
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://127.0.0.1:8000/api",
+        baseUrl: "http://myemssystem.herokuapp.com/api",
         credentials: "include",
         prepareHeaders: (headers, { type }) => {
             const token = sessionStorage.getItem("access_token");
