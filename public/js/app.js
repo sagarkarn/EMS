@@ -13419,7 +13419,7 @@ __webpack_require__.r(__webpack_exports__);
 var authApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__.createApi)({
   reducerPath: "authApi",
   baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__.fetchBaseQuery)({
-    baseUrl: "http://127.0.0.1:8000/api",
+    baseUrl: "http://myemssystem.herokuapp.com/api",
     credentials: "include",
     prepareHeaders: function prepareHeaders(headers, _ref) {
       var type = _ref.type;
@@ -13470,7 +13470,7 @@ __webpack_require__.r(__webpack_exports__);
 var userApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_1__.createApi)({
   reducerPath: "userApi",
   baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__.fetchBaseQuery)({
-    baseUrl: "http://127.0.0.1:8000/api",
+    baseUrl: "http://myemssystem.herokuapp.com/api",
     credentials: "include",
     prepareHeaders: function prepareHeaders(headers, _ref) {
       var type = _ref.type;
