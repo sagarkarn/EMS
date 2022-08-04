@@ -1,3 +1,3 @@
-require("./bootstrap");
+import "./bootstrap";
 
-require("./UIClient/Index");
+import "./UIClient/Index";
