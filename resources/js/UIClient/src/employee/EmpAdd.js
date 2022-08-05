@@ -68,7 +68,7 @@ function EmpAdd() {
                                                 className="list-group-item list-group-item-action border-none"
                                                 href="javascript:void(0)"
                                             >
-                                                Teams & Offices
+                                                Teams &amp; Offices
                                             </a>
                                             <a
                                                 className="list-group-item list-group-item-action border-none"
