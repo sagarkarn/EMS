@@ -1,6 +1,11 @@
 import React from "react";
+import { useTeamsApi } from "../services/Team";
 
 function EmpAdd() {
+    const teams = useTeamsApi();
+
+    console.log(teams);
+
     return (
         <div>
             <div className="page-wrapper">

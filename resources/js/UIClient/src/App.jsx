@@ -34,6 +34,11 @@ function App() {
         if (token) {
             dispatch(authActions.login());
             navigate("/");
+        } else {
+            let pathName = window.location.pathname;
+            if (pathName != "/login") {
+                navigate("/login");
+            }
         }
     }, []);
     console.log(isLoggedIn);

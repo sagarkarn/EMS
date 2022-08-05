@@ -16,21 +16,18 @@ function Login() {
 
     const [token, setToken] = useToken();
 
-    const user = useUserQuery();
-
     const submitForm = async (event) => {
         event.preventDefault();
 
         let result = await login({ username: email, password: password });
         console.log(result);
+
         let myToken = result.data["token"];
+        console.log(myToken);
         if (myToken) {
+            dispatch(authActions.login());
+            navigate("/");
             setToken(myToken);
-            user.refetch();
-            if (user.data["email"] == email) {
-                dispatch(authActions.login());
-                navigate("/");
-            }
         }
     };
 
