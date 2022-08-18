@@ -21206,17 +21206,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "authApi": () => (/* binding */ authApi),
 /* harmony export */   "useLoginMutation": () => (/* binding */ useLoginMutation)
 /* harmony export */ });
-/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/react/rtk-query-react.esm.js");
-/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/rtk-query.esm.js");
+/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/react/rtk-query-react.esm.js");
+/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/rtk-query.esm.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
 /* harmony import */ var _hooks_useToken__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/useToken */ "./resources/js/UIClient/src/hooks/useToken.jsx");
+/* harmony import */ var _Repo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Repo */ "./resources/js/UIClient/src/services/Repo.js");
 
 
 
-var authApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__.createApi)({
+
+var authApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__.createApi)({
   reducerPath: "authApi",
-  baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__.fetchBaseQuery)({
-    baseUrl: "http://localhost:8000/api",
+  baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_4__.fetchBaseQuery)({
+    baseUrl: _Repo__WEBPACK_IMPORTED_MODULE_2__["default"].BASE_URL,
     credentials: "include",
     prepareHeaders: function prepareHeaders(headers, _ref) {
       var type = _ref.type;
@@ -21500,7 +21502,8 @@ var Repo = /*#__PURE__*/function () {
 
   _createClass(Repo, null, [{
     key: "getHeaders",
-    value: function () {
+    value: // static BASE_URL = "http://localhost:8000/api";
+    function () {
       var _getHeaders = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var token;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -21537,7 +21540,7 @@ var Repo = /*#__PURE__*/function () {
   return Repo;
 }();
 
-_defineProperty(Repo, "BASE_URL", "http://localhost:8000/api");
+_defineProperty(Repo, "BASE_URL", "http://myemssystem.herokuapp.com/api");
 
 
 
@@ -21663,15 +21666,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "useUserQuery": () => (/* binding */ useUserQuery),
 /* harmony export */   "userApi": () => (/* binding */ userApi)
 /* harmony export */ });
-/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/react/rtk-query-react.esm.js");
-/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/rtk-query.esm.js");
+/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/react/rtk-query-react.esm.js");
+/* harmony import */ var _reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @reduxjs/toolkit/query/react */ "./node_modules/@reduxjs/toolkit/dist/query/rtk-query.esm.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+/* harmony import */ var _Repo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Repo */ "./resources/js/UIClient/src/services/Repo.js");
 
 
-var userApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_1__.createApi)({
+
+var userApi = (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__.createApi)({
   reducerPath: "userApi",
-  baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_2__.fetchBaseQuery)({
-    baseUrl: "http://localhost:8000/api",
+  baseQuery: (0,_reduxjs_toolkit_query_react__WEBPACK_IMPORTED_MODULE_3__.fetchBaseQuery)({
+    baseUrl: _Repo__WEBPACK_IMPORTED_MODULE_1__["default"].BASE_URL,
     credentials: "include",
     prepareHeaders: function prepareHeaders(headers, _ref) {
       var type = _ref.type;

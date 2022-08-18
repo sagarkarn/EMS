@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
 import useToken from "../hooks/useToken";
+import Repo from "./Repo";
 
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:8000/api",
+        baseUrl: Repo.BASE_URL,
         credentials: "include",
         prepareHeaders: (headers, { type }) => {
             const token = sessionStorage.getItem("access_token");
