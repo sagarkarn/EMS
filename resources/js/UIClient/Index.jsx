@@ -4,12 +4,16 @@ import { Provider } from "react-redux";
 import App from "./src/App";
 import { store } from "./src/store";
 import { BrowserRouter } from "react-router-dom";
+import SnackbarProvider from "react-simple-snackbar";
+import "./lib/js/jquery-3.2.1.min";
 
 function Index() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <App />
+                <SnackbarProvider>
+                    <App />
+                </SnackbarProvider>
             </BrowserRouter>
         </Provider>
     );

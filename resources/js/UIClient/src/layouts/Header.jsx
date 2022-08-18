@@ -3,16 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
     const navigate = useNavigate();
+
     const [activeLink, setActiveLink] = useState("");
 
-    const path = window.location.pathname;
+    let path = window.location.pathname;
+
+    if (path == "/offices" || path == "/teams") {
+        path = "/employee";
+    }
+
     if (path != activeLink) {
         setActiveLink(path);
     }
 
     return (
         <>
-            <div id="loader-wrapper">
+            <div id="loader-wrapper" style={{ display: "none" }}>
                 <div className="loader">
                     <div className="dot"></div>
                     <div className="dot"></div>

@@ -13,7 +13,7 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,22 @@ class StoreEmployeeRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            //
+            "f_name" => 'required|string',
+            "l_name" => 'required|string',
+            "email" => 'required|email|unique:users,email',
+            "country" => 'string|required',
+            "start_date" => 'date|required',
+            "job_title" => 'string|required',
+            "team" => 'integer|required|exists:teams,id',
+            'line_manager' => 'integer|required|exists:users,id',
+            'currency' => 'integer|required|exists:currencies,id',
+            'amount' => 'integer|required',
+            'frequency' => 'required|integer|min:1|max:6',
+            'salery_start_date' => 'date|required',
+            'employment_type' => 'required|in:permanent,freelancer',
+            'office' => 'required'
         ];
     }
 }

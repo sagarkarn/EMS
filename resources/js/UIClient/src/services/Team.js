@@ -1,22 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Cookies from "js-cookie";
+import Repo from "./Repo";
 
-export const teamsApi = createApi({
-    reducerPath: "teamsApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: "http://myemssystem.herokuapp.com/api",
-        credentials: "include",
-        prepareHeaders: (headers, { type }) => {
-            const token = sessionStorage.getItem("access_token");
-            headers.append("Authorization", `Bearer ${token}`);
-            return headers;
-        },
-    }),
-    endpoints: (builder) => ({
-        user: builder.query({
-            query: () => "/teams",
-        }),
-    }),
-});
-
-export const { useTeamsApi } = teamsApi;
+export default class TeamRepo extends Repo {
+    static async all() {
+        console.log(Repo.BASE_URL);
+        const response = await fetch(Repo.BASE_URL + "/teams", {
+            method: "GET",
+            headers: await Repo.getHeaders(),
+        });
+        return await response.json();
+    }
+}

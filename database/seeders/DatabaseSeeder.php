@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Currency;
+use App\Models\Office;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +25,15 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TeamSeeder::class
+        ]);
+        Office::create([
+            "name" => "Main office"
+        ]);
+        Currency::create([
+            "name" => "$"
+        ]);
+        Currency::create([
+            "name" => "₹"
         ]);
     }
 }

@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const userApi = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://myemssystem.herokuapp.com/api",
+        baseUrl: "http://localhost:8000/api",
         credentials: "include",
         prepareHeaders: (headers, { type }) => {
             const token = sessionStorage.getItem("access_token");

@@ -573,6 +573,10 @@ video {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .mr-auto {
   margin-right: auto;
 }
@@ -706,6 +710,10 @@ video {
 }
 .align-middle {
   vertical-align: middle;
+}
+.ordinal {
+  --tw-ordinal: ordinal;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
 }
 .text-white {
   --tw-text-opacity: 1;

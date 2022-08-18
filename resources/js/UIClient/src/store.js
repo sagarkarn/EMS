@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authApi } from "./services/Auth";
+import { teamsApi } from "./services/Team";
 import { userApi } from "./services/User";
 import authSlice from "./slices/auth-slice";
 

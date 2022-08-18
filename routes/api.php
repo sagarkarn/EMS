@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,4 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
         return Auth::user();
     });
     Route::get("/teams", [TeamController::class, 'index']);
+    Route::get("/offices", [OfficeController::class, 'index']);
+    Route::get("/currencies", [CurrencyController::class, 'index']);
+
+    Route::post("/user/store", [EmployeeController::class, 'store']);
+    Route::get("/users", [EmployeeController::class, 'index']);
 });

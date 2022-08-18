@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{path?}', function () {
+Route::get('/{any?}/{p?}', function () {
     return view('welcome');
 })->where('any', '^(?!api\/)[\/\w\.-]*');

@@ -24,6 +24,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useUserQuery } from "./services/User";
 import { authActions } from "./slices/auth-slice";
 import useToken from "./hooks/useToken";
+import EmpList from "./employee/EmpList";
+import TeamIndex from "./teams/TeamIndex";
+import OfficeIndex from "./offices/OfficeIndex";
 
 function App() {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -59,6 +62,7 @@ function App() {
                             <Route path="employee">
                                 <Route index element={<EmpIndex />} />
                                 <Route path="add" element={<EmpAdd />} />
+                                <Route path="list" element={<EmpList />} />
                             </Route>
                             <Route path="company">
                                 <Route index element={<CmpIndex />} />
@@ -86,6 +90,14 @@ function App() {
                             </Route>
                             <Route path="setting">
                                 <Route index element={<Setting />} />
+                                {/* <Route path="add" element={<EmpAdd />} /> */}
+                            </Route>
+                            <Route path="teams">
+                                <Route index element={<TeamIndex />} />
+                                {/* <Route path="add" element={<EmpAdd />} /> */}
+                            </Route>
+                            <Route path="offices">
+                                <Route index element={<OfficeIndex />} />
                                 {/* <Route path="add" element={<EmpAdd />} /> */}
                             </Route>
                         </Route>
