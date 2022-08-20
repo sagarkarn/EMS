@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
 use App\Models\Team;
+use Facade\FlareClient\Http\Response;
 
 class TeamController extends Controller
 {
@@ -36,7 +37,15 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        Team::create([
+            "name" => $data['name'],
+        ]);
+        return Response([
+            'status' => true,
+            'message' => 'Team Created Successfully',
+        ], 201);
     }
 
     /**

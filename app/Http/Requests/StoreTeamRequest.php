@@ -13,7 +13,7 @@ class StoreTeamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,9 @@ class StoreTeamRequest extends FormRequest
      */
     public function rules()
     {
+        print_r($this->all());
         return [
-            //
+            "name" => "required"
         ];
     }
 }

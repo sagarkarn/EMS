@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\EmployeeCreated;
+use App\Mail\SendRegistrationMail;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -29,5 +30,6 @@ class SendEmailLoginUrl
     public function handle(EmployeeCreated $event)
     {
         $email = $event->email;
+        Mail::to($email)->send(new SendRegistrationMail());
     }
 }

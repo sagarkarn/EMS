@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return Auth::user();
     });
     Route::get("/teams", [TeamController::class, 'index']);
+    Route::post("/teams/store", [TeamController::class, 'store']);
     Route::get("/offices", [OfficeController::class, 'index']);
     Route::get("/currencies", [CurrencyController::class, 'index']);
 

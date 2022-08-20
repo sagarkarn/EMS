@@ -21502,7 +21502,7 @@ var Repo = /*#__PURE__*/function () {
 
   _createClass(Repo, null, [{
     key: "getHeaders",
-    value: // static BASE_URL = "http://localhost:8000/api";
+    value: // static BASE_URL = "http://myemssystem.herokuapp.com/api";
     function () {
       var _getHeaders = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var token;
@@ -21540,7 +21540,7 @@ var Repo = /*#__PURE__*/function () {
   return Repo;
 }();
 
-_defineProperty(Repo, "BASE_URL", "http://myemssystem.herokuapp.com/api");
+_defineProperty(Repo, "BASE_URL", "http://localhost:8000/api");
 
 
 
@@ -21608,30 +21608,29 @@ var TeamRepo = /*#__PURE__*/function (_Repo) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(_Repo__WEBPACK_IMPORTED_MODULE_0__["default"].BASE_URL);
                 _context.t0 = fetch;
                 _context.t1 = _Repo__WEBPACK_IMPORTED_MODULE_0__["default"].BASE_URL + "/teams";
-                _context.next = 5;
+                _context.next = 4;
                 return _Repo__WEBPACK_IMPORTED_MODULE_0__["default"].getHeaders();
 
-              case 5:
+              case 4:
                 _context.t2 = _context.sent;
                 _context.t3 = {
                   method: "GET",
                   headers: _context.t2
                 };
-                _context.next = 9;
+                _context.next = 8;
                 return (0, _context.t0)(_context.t1, _context.t3);
 
-              case 9:
+              case 8:
                 response = _context.sent;
-                _context.next = 12;
+                _context.next = 11;
                 return response.json();
 
-              case 12:
+              case 11:
                 return _context.abrupt("return", _context.sent);
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -21644,6 +21643,48 @@ var TeamRepo = /*#__PURE__*/function (_Repo) {
       }
 
       return all;
+    }()
+  }, {
+    key: "store",
+    value: function () {
+      var _store = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(name) {
+        var headers, response;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _Repo__WEBPACK_IMPORTED_MODULE_0__["default"].getHeaders();
+
+              case 2:
+                headers = _context2.sent;
+                headers["Content-Type"] = "application/json";
+                _context2.next = 6;
+                return fetch(_Repo__WEBPACK_IMPORTED_MODULE_0__["default"].BASE_URL + "/teams/store", {
+                  method: "POST",
+                  headers: headers,
+                  body: JSON.stringify({
+                    name: name
+                  })
+                });
+
+              case 6:
+                response = _context2.sent;
+                return _context2.abrupt("return", response);
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function store(_x) {
+        return _store.apply(this, arguments);
+      }
+
+      return store;
     }()
   }]);
 
@@ -22289,7 +22330,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_js_jquery_3_2_1_min__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_lib_js_jquery_3_2_1_min__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _lib_plugins_select2_select2_min__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../lib/plugins/select2/select2.min */ "./resources/js/UIClient/lib/plugins/select2/select2.min.js");
 /* harmony import */ var _lib_plugins_select2_select2_min__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_lib_plugins_select2_select2_min__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _services_UserRepo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/UserRepo */ "./resources/js/UIClient/src/services/UserRepo.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -22308,52 +22350,77 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function AddMemberModal() {
-  var _useState = useState([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+function AddMemberModal() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      users = _useState2[0],
+      setUsers = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    _services_UserRepo__WEBPACK_IMPORTED_MODULE_3__["default"].users().then(function (res) {
+      $(".select2").select2();
+      setUsers(res);
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  }, []);
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    alert("submitted");
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     "class": "modal fade",
     id: "addmembers",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "modal-dialog modal-dialog-centered",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         "class": "modal-content",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           "class": "modal-body",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             type: "button",
             "class": "close",
             "data-dismiss": "modal",
             children: "\xD7"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
             "class": "modal-title mb-3",
             children: "Add Members"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            "class": "form-group",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              "class": "input-group mb-3",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
-                "class": "form-control date-enter select2",
-                placeholder: "Name",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                  value: "",
-                  children: "Select User"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+            onSubmit: handleSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              "class": "form-group",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                "class": "input-group mb-3",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+                  "class": "form-control date-enter select2",
+                  style: {
+                    width: "100%"
+                  },
+                  placeholder: "Name",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                    value: "",
+                    children: "Select User"
+                  }, -1), users === null || users === void 0 ? void 0 : users.map(function (user, index) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                      value: user.id,
+                      children: user.name
+                    }, index);
+                  })]
                 })
               })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-danger ctm-border-radius float-right ml-3",
-            "data-dismiss": "modal",
-            children: "Cancel"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-theme button-1 text-white ctm-border-radius float-right",
-            children: "Add"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              "class": "btn btn-danger ctm-border-radius float-right ml-3",
+              "data-dismiss": "modal",
+              children: "Cancel"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "button",
+              "class": "btn btn-theme button-1 text-white ctm-border-radius float-right",
+              children: "Add"
+            })]
           })]
         })
       })
@@ -22378,45 +22445,89 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_simple_snackbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-simple-snackbar */ "./node_modules/react-simple-snackbar/dist/index.es.js");
+/* harmony import */ var _services_Team__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/Team */ "./resources/js/UIClient/src/services/Team.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
 
 function CreateTeamModal() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
+
+  var _useSnackbar = (0,react_simple_snackbar__WEBPACK_IMPORTED_MODULE_1__.useSnackbar)(),
+      _useSnackbar2 = _slicedToArray(_useSnackbar, 2),
+      open = _useSnackbar2[0],
+      close = _useSnackbar2[1];
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    _services_Team__WEBPACK_IMPORTED_MODULE_2__["default"].store(name).then(function (res) {
+      console.log(res);
+      open(res.message);
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     "class": "modal fade",
     id: "addTeam",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       "class": "modal-dialog modal-dialog-centered",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         "class": "modal-content",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           "class": "modal-body",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             "class": "close",
             "data-dismiss": "modal",
             children: "\xD7"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
             "class": "modal-title mb-3",
             children: "Create New Team"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            "class": "form-group",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-              type: "text",
-              "class": "form-control",
-              placeholder: "Name"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-danger ctm-border-radius float-right ml-3",
-            "data-dismiss": "modal",
-            children: "Cancel"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-theme button-1 ctm-border-radius text-white float-right",
-            children: "Add"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+            onSubmit: handleSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              "class": "form-group",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                type: "text",
+                "class": "form-control",
+                placeholder: "Name",
+                name: "name",
+                value: name,
+                onChange: function onChange(e) {
+                  return setName(e.currentTarget.value);
+                }
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "button",
+              "class": "btn btn-danger ctm-border-radius float-right ml-3",
+              "data-dismiss": "modal",
+              children: "Cancel"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "submit",
+              "class": "btn btn-theme button-1 ctm-border-radius text-white float-right",
+              children: "Add"
+            })]
           })]
         })
       })
